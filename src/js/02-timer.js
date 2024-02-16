@@ -1,6 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
+
 const startBtn = document.querySelector('button[data-start]');
 const daysField = document.querySelector('span[data-days]');
 const hoursField = document.querySelector('span[data-hours]');
@@ -16,6 +17,7 @@ const calendar = flatpickr("#datetime-picker", {
   minuteIncrement: 1,
     onClose(selectedDates) {
         console.log(selectedDates[0]);
+
         const currentTime = new Date();
         if (selectedDates[0] < currentTime) {
             alert("Please choose a date in the future");
@@ -27,18 +29,28 @@ const calendar = flatpickr("#datetime-picker", {
   },
 });
 
+function addLeadingZero(value) {
+    return value.toString().padStart(2, '0');
+}
+
 startBtn.addEventListener("click", () => {
-    setInterval(() => {
+    const timerId = setInterval(() => {
         const currentTime = new Date();
-        const selectedTime = calendar.onClose;
-        const ms = selectedTime.getTime() - currentTime.getTime();
+        const selectedTime = new Date(calendar.selectedDates[0]);
+        const ms = selectedTime - currentTime;
         const newTime = convertMs(ms);
-        daysField.textContent = newTime.days;
-        hoursField.textContent = newTime.hours;
-        minutesField.textContent = newTime.minutes;
-        secondsField.textContent = newTime.seconds;
-    }, 1000)
-});
+        daysField.innerHTML = addLeadingZero(newTime.days);
+        hoursField.innerHTML = addLeadingZero(newTime.hours);
+        minutesField.innerHTML = addLeadingZero(newTime.minutes);
+        secondsField.innerHTML = addLeadingZero(newTime.seconds);
+        if (newTime.days === 0 && newTime.hours === 0 && newTime.minutes === 0 && newTime.seconds === 0) {
+            clearInterval(timerId);
+        }
+    }, 1000);
+    }
+);
+
+
 
 function convertMs(ms) {
 // Number of milliseconds per unit of time
