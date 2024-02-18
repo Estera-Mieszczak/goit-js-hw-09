@@ -1,7 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
-
 const startBtn = document.querySelector('button[data-start]');
 const daysField = document.querySelector('span[data-days]');
 const hoursField = document.querySelector('span[data-hours]');
@@ -30,7 +29,7 @@ const calendar = flatpickr("#datetime-picker", {
 });
 
 function addLeadingZero(value) {
-    return value.toString().padStart(2, '0');
+    return value.toString.padStart(2, '0');
 }
 
 startBtn.addEventListener("click", () => {
