@@ -29,7 +29,7 @@ const calendar = flatpickr("#datetime-picker", {
 });
 
 function addLeadingZero(value) {
-    return value.toString.padStart(2, '0');
+    return value.toString().padStart(2, '0');
 }
 
 startBtn.addEventListener("click", () => {
