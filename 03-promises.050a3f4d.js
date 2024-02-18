@@ -1,2 +1,0 @@
-const e=document.querySelector(".form");console.log(e),e.addEventListener("submit",(e=>{e.preventDefault;let r=0,t=e.currentTarget.form[2].value,n=e.currentTarget.form[0].value;timerId=setInterval((()=>{r<t?(function(e,r){return new Promise(((t,n)=>{const o=Math.random()>.3;setTimeout((()=>{o?resovle({position:e,delay:r}):n("error")}))}))}(r,n).then((e=>alert(` Fulfilled promise ${r} in ${n}ms`))).catch((e=>alert(`Rejected promise ${r} in ${n}ms`))),r+=1,n+=e.currentTarget.form[1].value):clearInterval(timerId)}),n)}));
-//# sourceMappingURL=03-promises.050a3f4d.js.map
